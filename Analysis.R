@@ -21,10 +21,10 @@ ggplot(data=DB_RIO %>% filter(`Parámetro`=="Fósforo Total (mg/L)"), aes(x=`Est
                                   "Angachilla","Tornagaleones",
                                   "Valdivia entre Guacamayo y Cutipay"), 
                          labels = function(`Estación`) str_wrap(`Estación`, width = 15))+
-        theme(axis.text.x = element_text(size=14, face="bold"),
+        theme(axis.text.x = element_text(size=12, face="bold"),
               legend.title = element_text(size = 15),
-              legend.text = element_text(size = 14),
-              axis.text.y = element_text(size=15),
+              legend.text = element_text(size = 12),
+              axis.text.y = element_text(size=12),
               legend.position="bottom")
 
 
@@ -97,12 +97,12 @@ openxlsx::write.xlsx(summary.stats, file = "N-NO3.xlsx")
 
 
 
-summary.stats <- DB_RIO %>% select(`Estación`,`Parámetro`,VALOR_NEW) %>% filter(`Parámetro`=="Nitrógeno de Nitrito") %>% 
-        group_by(`Estación`) %>%
-        #get_summary_stats(type="full")
-        get_summary_stats(show = c("n","min","max","q1","median","q3","iqr","mean")) %>% select(-variable)
-summary.stats
-
-#quantile(DB_RIO %>% filter(`Parámetro`=="DBO5 (mg/L)") %>% select(VALOR_NEW), probs=c(.25, .75), na.rm = TRUE)
+# summary.stats <- DB_RIO %>% select(`Estación`,`Parámetro`,VALOR_NEW) %>% filter(`Parámetro`=="Nitrógeno de Nitrito") %>% 
+#         group_by(`Estación`) %>%
+#         #get_summary_stats(type="full")
+#         get_summary_stats(show = c("n","min","max","q1","median","q3","iqr","mean")) %>% select(-variable)
+# summary.stats
 # 
-openxlsx::write.xlsx(summary.stats, file = "N-NO2.xlsx")
+# #quantile(DB_RIO %>% filter(`Parámetro`=="DBO5 (mg/L)") %>% select(VALOR_NEW), probs=c(.25, .75), na.rm = TRUE)
+# # 
+# openxlsx::write.xlsx(summary.stats, file = "N-NO2.xlsx")
