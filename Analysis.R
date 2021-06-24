@@ -6,7 +6,10 @@ library(xlsx)
 library(ggplot2)
 library(stringr)
 
+#Load dataset
+DB_RIO <- read_excel("20103 Base de datos consolidada EDAS.xlsx",sheet = "DB_RIO")
 
+#Exploration
 ggplot(data=DB_RIO %>% filter(`Parámetro`=="Nitrógeno Kjeldahl (mg N/L)"), aes(x=`Estación`, y=VALOR_NEW))+ 
         geom_boxplot()+ geom_jitter(aes(color=`Temporada`))+ 
         ylim(0,NA)+theme_bw()+ylab("mg/L")+xlab(NULL)+
@@ -25,7 +28,7 @@ ggplot(data=DB_RIO %>% filter(`Parámetro`=="Nitrógeno Kjeldahl (mg N/L)"), aes
               legend.position="bottom")
 
 
-DB_RIO <- read_excel("20103 Base de datos consolidada EDAS.xlsx",sheet = "DB_RIO")
+
 
 # Basic summary stats
 #::::::::::::::::::::::::::::::::::::::::::::::::
@@ -38,6 +41,7 @@ summary.stats
 
 #quantile(DB_RIO %>% filter(`Parámetro`=="DBO5 (mg/L)") %>% select(VALOR_NEW), probs=c(.25, .75), na.rm = TRUE)
 
+#save summary table in excel
 openxlsx::write.xlsx(summary.stats, file = "dbo.xlsx")
 
 
