@@ -10,7 +10,7 @@ library(stringr)
 DB_RIO <- read_excel("20103 Base de datos consolidada EDAS.xlsx",sheet = "DB_RIO")
 
 #Exploration
-ggplot(data=DB_RIO %>% filter(`Parámetro`=="Nitrógeno Kjeldahl (mg N/L)"), aes(x=`Estación`, y=VALOR_NEW))+ 
+ggplot(data=DB_RIO %>% filter(`Parámetro`=="Fósforo Total (mg/L)"), aes(x=`Estación`, y=VALOR_NEW))+ 
         geom_boxplot()+ geom_jitter(aes(color=`Temporada`))+ 
         ylim(0,NA)+theme_bw()+ylab("mg/L")+xlab(NULL)+
         scale_x_discrete(limits=c("Río Cruces en Punucapa",
@@ -104,5 +104,5 @@ summary.stats <- DB_RIO %>% select(`Estación`,`Parámetro`,VALOR_NEW) %>% filte
 summary.stats
 
 #quantile(DB_RIO %>% filter(`Parámetro`=="DBO5 (mg/L)") %>% select(VALOR_NEW), probs=c(.25, .75), na.rm = TRUE)
-
+# 
 openxlsx::write.xlsx(summary.stats, file = "N-NO2.xlsx")
